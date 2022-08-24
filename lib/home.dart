@@ -27,7 +27,36 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [Text("Papai"), Text("VS"), Text("Clarice")])
+                  children: const [Text("Papai"), Text("VS"), Text("Clarice")]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    child: const Image(
+                      image: AssetImage(
+                        'assets/images/papel.png',
+                      ),
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
+                  GestureDetector(
+                    child: const Image(
+                      image: AssetImage('assets/images/pedra.png'),
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
+                  GestureDetector(
+                    child: const Image(
+                      image: AssetImage('assets/images/tesoura.png'),
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
+                ],
+              ),
             ],
           )),
       floatingActionButton: FloatingActionButton(
