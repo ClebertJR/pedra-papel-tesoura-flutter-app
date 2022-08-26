@@ -24,35 +24,64 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [Text("Papai"), Text("VS"), Text("Clarice")]),
+              const CircleAvatar(
+                backgroundColor: Colors.purple,
+                radius: 80,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/papai.jpeg'),
+                  radius: 70,
+                ),
+              ),
+              const Text(
+                "Chefão",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
+              const Text(
+                "VS",
+                style: TextStyle(fontSize: 100),
+              ),
+              const CircleAvatar(
+                backgroundColor: Colors.purple,
+                radius: 80,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/clarice.jpeg'),
+                  radius: 70,
+                ),
+              ),
+              const Text(
+                "Clarice",
+                style: TextStyle(fontSize: 30),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
+                    onTap: (() {print("pedra");}),
+                    child: const Image(
+                      image: AssetImage('assets/images/pedra.png'),
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (() {print("papel");}),
                     child: const Image(
                       image: AssetImage(
                         'assets/images/papel.png',
                       ),
-                      width: 60,
-                      height: 60,
+                      width: 100,
+                      height: 100,
                     ),
                   ),
                   GestureDetector(
-                    child: const Image(
-                      image: AssetImage('assets/images/pedra.png'),
-                      width: 60,
-                      height: 60,
-                    ),
-                  ),
-                  GestureDetector(
+                    onTap: (() {print("tesoura");}),
                     child: const Image(
                       image: AssetImage('assets/images/tesoura.png'),
-                      width: 60,
-                      height: 60,
+                      width: 100,
+                      height: 100,
                     ),
                   ),
                 ],
@@ -60,9 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           )),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {print("jogou");},
           backgroundColor: Colors.purple,
-          child: const Icon(Icons.play_arrow)),
+          child: const Text("JOGAR")),
     );
   }
 }
