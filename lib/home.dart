@@ -12,6 +12,41 @@ Random random = Random();
 late int escolhaJogadorEu;
 late int escolhaJogadorPC;
 
+duelo(eu, pc, context) {
+  String resultado;
+  if (eu == pc) {
+    resultado = "Vocês escolheram a mesma opção e empataram!";
+  } else if (eu == 1 && pc == 2) {
+    resultado = "Você escolheu pedra e Bowser papel. Bowser venceu!";
+  } else if (eu == 1 && pc == 3) {
+    resultado = "Você escolheu pedra e Bowser escolheu tesoura. Você venceu!";
+  } else if (eu == 2 && pc == 3) {
+    resultado = "Você escolheu papel e Bowser escolheu tesoura. Bowser venceu!";
+  } else if (eu == 2 && pc == 1) {
+    resultado = "Você escolheu papel && Bowser pedra. Você venceu!";
+  } else if (eu == 3 && pc == 1) {
+    resultado = "Você escolheu tesoura e Bowser pedra. Bowser venceu!";
+  } else {
+    resultado = "Você escolheu tesoura e Bowser papel. Você venceu!";
+  }
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Resultado final!"),
+          content: Text(resultado),
+          actions: [
+            TextButton(
+              child: const Text("Jogar novamente"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      });
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -107,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             escolhaJogadorPC = random.nextInt(3) + 1;
+            duelo(escolhaJogadorEu, escolhaJogadorPC, context);
           },
           backgroundColor: Colors.purple,
           child: const Text("JOGAR")),
