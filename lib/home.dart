@@ -11,6 +11,14 @@ class MyHomePage extends StatefulWidget {
 Random random = Random();
 late int escolhaJogadorEu;
 late int escolhaJogadorPC;
+List<Color> borderColors = [
+  Colors.transparent,
+  Colors.transparent,
+  Colors.transparent
+];
+List<double> borderWidths = [0, 0, 0];
+int countPC = 0;
+int countEu = 0;
 
 duelo(eu, pc, context) {
   String resultado;
@@ -18,26 +26,57 @@ duelo(eu, pc, context) {
     resultado = "Vocês escolheram a mesma opção e empataram!";
   } else if (eu == 1 && pc == 2) {
     resultado = "Você escolheu pedra e Bowser papel. Bowser venceu!";
+    countPC++;
   } else if (eu == 1 && pc == 3) {
     resultado = "Você escolheu pedra e Bowser escolheu tesoura. Você venceu!";
+    countEu++;
   } else if (eu == 2 && pc == 3) {
     resultado = "Você escolheu papel e Bowser escolheu tesoura. Bowser venceu!";
+    countPC++;
   } else if (eu == 2 && pc == 1) {
-    resultado = "Você escolheu papel && Bowser pedra. Você venceu!";
+    resultado = "Você escolheu papel e Bowser pedra. Você venceu!";
+    countEu++;
   } else if (eu == 3 && pc == 1) {
     resultado = "Você escolheu tesoura e Bowser pedra. Bowser venceu!";
+    countPC++;
   } else {
     resultado = "Você escolheu tesoura e Bowser papel. Você venceu!";
+    countEu++;
   }
   showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("Resultado final!"),
-          content: Text(resultado),
+          title: const Text(
+            "Resultado final!",
+            textAlign: TextAlign.center,
+          ),
+          content: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                resultado,
+                textAlign: TextAlign.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text("Cacá"),
+                  Text(countEu.toString()),
+                  const Text("X"),
+                  Text(countPC.toString()),
+                  const Text("Bowser"),
+                ],
+              ),
+            ],
+          ),
           actions: [
             TextButton(
-              child: const Text("Jogar novamente"),
+              child: const Text(
+                "Jogar novamente",
+                style: TextStyle(color: Colors.purple),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -45,6 +84,17 @@ duelo(eu, pc, context) {
           ],
         );
       });
+}
+
+void onTapImage(int index) {
+  borderColors[index] = Colors.purple;
+  borderWidths[index] = 5;
+  for (int i = 0; i < borderColors.length; i++) {
+    if (i != index) {
+      borderColors[i] = Colors.transparent;
+      borderWidths[i] = 0;
+    }
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -69,12 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
               backgroundColor: Colors.purple,
               radius: 80,
               child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/papai.jpeg'),
+                backgroundImage: AssetImage('assets/images/bowser.png'),
                 radius: 70,
               ),
             ),
             const Text(
-              "Chefão",
+              "Bowser",
               style: TextStyle(
                 fontSize: 30,
               ),
@@ -92,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             const Text(
-              "Clarice",
+              "Cacá",
               style: TextStyle(fontSize: 30),
             ),
             Row(
@@ -101,37 +151,80 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 GestureDetector(
                   onTap: (() {
-                    escolhaJogadorEu = 1;
-                    //pedra
+                    escolhaJogadorEu = 1; //pedra
+                    onTapImage(0);
+                    setState(() {
+                      borderColors[0] = Colors.yellow;
+                      borderWidths[0] = 8;
+                    });
                   }),
-                  child: const Image(
-                    image: AssetImage('assets/images/pedra.png'),
-                    width: 100,
-                    height: 100,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: (() {
-                    escolhaJogadorEu = 2;
-                    //papel
-                  }),
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/images/papel.png',
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                      border: Border.all(
+                        color: borderColors[0],
+                        width: borderWidths[0],
+                      ),
                     ),
-                    width: 100,
-                    height: 100,
+                    child: const Image(
+                      image: AssetImage(
+                        'assets/images/pedra.png',
+                      ),
+                      width: 100,
+                      height: 100,
+                    ),
                   ),
                 ),
                 GestureDetector(
                   onTap: (() {
-                    escolhaJogadorEu = 3;
-                    //tesoura;
+                    escolhaJogadorEu = 2; //papel
+                    onTapImage(1);
+                    setState(() {
+                      borderColors[1] = Colors.red;
+                      borderWidths[1] = 8;
+                    });
                   }),
-                  child: const Image(
-                    image: AssetImage('assets/images/tesoura.png'),
-                    width: 100,
-                    height: 100,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                      border: Border.all(
+                        color: borderColors[1],
+                        width: borderWidths[1],
+                      ),
+                    ),
+                    child: const Image(
+                      image: AssetImage(
+                        'assets/images/papel.png',
+                      ),
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (() {
+                    escolhaJogadorEu = 3; //tesoura
+                    onTapImage(2);
+                    setState(() {
+                      borderColors[2] = Colors.blue;
+                      borderWidths[2] = 8;
+                    });
+                  }),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                      border: Border.all(
+                        color: borderColors[2],
+                        width: borderWidths[2],
+                      ),
+                    ),
+                    child: const Image(
+                      image: AssetImage(
+                        'assets/images/tesoura.png',
+                      ),
+                      width: 100,
+                      height: 100,
+                    ),
                   ),
                 ),
               ],
