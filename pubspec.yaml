@@ -62,7 +62,7 @@ flutter:
     - assets/images/papel.png
     - assets/images/pedra.png
     - assets/images/tesoura.png
-    - assets/images/clarice.jpeg
+    - assets/images/peach.jpeg
     - assets/images/bowser.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

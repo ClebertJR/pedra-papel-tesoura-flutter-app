@@ -23,24 +23,25 @@ int countEu = 0;
 duelo(eu, pc, context) {
   String resultado;
   if (eu == pc) {
-    resultado = "Vocês escolheram a mesma opção e empataram!";
+    resultado = "Você escolheu a mesma opção que Bowser. Ninguém pontuou!";
   } else if (eu == 1 && pc == 2) {
     resultado = "Você escolheu pedra e Bowser papel. Bowser venceu!";
     countPC++;
   } else if (eu == 1 && pc == 3) {
-    resultado = "Você escolheu pedra e Bowser escolheu tesoura. Você venceu!";
+    resultado =
+        "Você escolheu pedra e Bowser escolheu tesoura. Você e Peach venceram!";
     countEu++;
   } else if (eu == 2 && pc == 3) {
     resultado = "Você escolheu papel e Bowser escolheu tesoura. Bowser venceu!";
     countPC++;
   } else if (eu == 2 && pc == 1) {
-    resultado = "Você escolheu papel e Bowser pedra. Você venceu!";
+    resultado = "Você escolheu papel e Bowser pedra. Você e Peach venceram!";
     countEu++;
   } else if (eu == 3 && pc == 1) {
     resultado = "Você escolheu tesoura e Bowser pedra. Bowser venceu!";
     countPC++;
   } else {
-    resultado = "Você escolheu tesoura e Bowser papel. Você venceu!";
+    resultado = "Você escolheu tesoura e Bowser papel. Você e Peach venceram!";
     countEu++;
   }
   showDialog(
@@ -62,7 +63,7 @@ duelo(eu, pc, context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Text("Cacá"),
+                  const Text("Peach"),
                   Text(countEu.toString()),
                   const Text("X"),
                   Text(countPC.toString()),
@@ -106,49 +107,62 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const CircleAvatar(
-              backgroundColor: Colors.purple,
-              radius: 80,
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/bowser.png'),
-                radius: 70,
-              ),
-            ),
-            const Text(
-              "Bowser",
-              style: TextStyle(
-                fontSize: 30,
-              ),
-            ),
-            const Text(
-              "VS",
-              style: TextStyle(fontSize: 100),
-            ),
-            const CircleAvatar(
-              backgroundColor: Colors.purple,
-              radius: 80,
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/clarice.jpeg'),
-                radius: 70,
-              ),
-            ),
-            const Text(
-              "Cacá",
-              style: TextStyle(fontSize: 30),
-            ),
-            Row(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 40,
+          ),
+          const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Column(children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.purple,
+                    radius: 70,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage('assets/images/peach.jpeg'),
+                      radius: 60,
+                    ),
+                  ),
+                  Text(
+                    "Peach",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ]),
+                Text(
+                  "VS",
+                  style: TextStyle(fontSize: 80),
+                ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.purple,
+                      radius: 70,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/bowser.png'),
+                        radius: 60,
+                      ),
+                    ),
+                    Text(
+                      "Bowser",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ],
+                )
+              ]),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(children: [
                 GestureDetector(
                   onTap: (() {
                     escolhaJogadorEu = 1; //pedra
@@ -175,6 +189,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
+                const Text(
+                  "Pedra",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ]),
+              Column(children: [
                 GestureDetector(
                   onTap: (() {
                     escolhaJogadorEu = 2; //papel
@@ -201,6 +221,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
+                const Text(
+                  "Papel",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ]),
+              Column(children: [
                 GestureDetector(
                   onTap: (() {
                     escolhaJogadorEu = 3; //tesoura
@@ -227,18 +253,33 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
-        )),
+                const Text(
+                  "Tesoura",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ]),
+            ],
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                escolhaJogadorPC = random.nextInt(3) + 1;
+                duelo(escolhaJogadorEu, escolhaJogadorPC, context);
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                backgroundColor: Colors.purple,
+              ),
+              child: const Text(
+                "JOGAR",
+                style: TextStyle(fontSize: 20),
+              ))
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            escolhaJogadorPC = random.nextInt(3) + 1;
-            duelo(escolhaJogadorEu, escolhaJogadorPC, context);
-          },
-          backgroundColor: Colors.purple,
-          child: const Text("JOGAR")),
     );
   }
 }
