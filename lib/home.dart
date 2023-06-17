@@ -28,20 +28,19 @@ duelo(eu, pc, context) {
     resultado = "Você escolheu pedra e Bowser papel. Bowser venceu!";
     countPC++;
   } else if (eu == 1 && pc == 3) {
-    resultado =
-        "Você escolheu pedra e Bowser escolheu tesoura. Você e Peach venceram!";
+    resultado = "Você escolheu pedra e Bowser escolheu tesoura. Peach venceu!";
     countEu++;
   } else if (eu == 2 && pc == 3) {
     resultado = "Você escolheu papel e Bowser escolheu tesoura. Bowser venceu!";
     countPC++;
   } else if (eu == 2 && pc == 1) {
-    resultado = "Você escolheu papel e Bowser pedra. Você e Peach venceram!";
+    resultado = "Você escolheu papel e Bowser pedra. Peach venceu!";
     countEu++;
   } else if (eu == 3 && pc == 1) {
     resultado = "Você escolheu tesoura e Bowser pedra. Bowser venceu!";
     countPC++;
   } else {
-    resultado = "Você escolheu tesoura e Bowser papel. Você e Peach venceram!";
+    resultado = "Você escolheu tesoura e Bowser papel. Peach venceu!";
     countEu++;
   }
   showDialog(
@@ -59,6 +58,14 @@ duelo(eu, pc, context) {
               Text(
                 resultado,
                 textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "PLACAR",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -111,53 +118,55 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 40,
-          ),
-          const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(children: [
+          Container(
+            padding: const EdgeInsets.only(top: 16, left: 16),
+            child: const Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                children: [
                   CircleAvatar(
                     backgroundColor: Colors.purple,
-                    radius: 70,
+                    radius: 80,
                     child: CircleAvatar(
                       backgroundImage: AssetImage('assets/images/peach.jpeg'),
-                      radius: 60,
+                      radius: 70,
                     ),
                   ),
                   Text(
                     "Peach",
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 30,
                     ),
                   ),
-                ]),
-                Text(
-                  "VS",
-                  style: TextStyle(fontSize: 80),
-                ),
-                Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.purple,
-                      radius: 70,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/bowser.png'),
-                        radius: 60,
-                      ),
-                    ),
-                    Text(
-                      "Bowser",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ],
-                )
-              ]),
-          const SizedBox(
-            height: 30,
+                ],
+              ),
+            ),
           ),
+          const Text(
+            "VS",
+            style: TextStyle(fontSize: 90),
+          ),
+          Container(
+              padding: const EdgeInsets.only(right: 16, bottom: 16),
+              child: const Align(
+                  alignment: Alignment.centerRight,
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.purple,
+                        radius: 80,
+                        child: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/bowser.png'),
+                          radius: 70,
+                        ),
+                      ),
+                      Text(
+                        "Bowser",
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    ],
+                  ))),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -261,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           const SizedBox(
-            height: 40,
+            height: 20,
           ),
           ElevatedButton(
               onPressed: () {
@@ -277,7 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text(
                 "JOGAR",
                 style: TextStyle(fontSize: 20),
-              ))
+              )),
         ],
       ),
     );
