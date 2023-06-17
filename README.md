@@ -1,16 +1,11 @@
-# jokenpo
+# JOKENPO
 
-A new Flutter project.
+## App Mobile do clássico jogo "Pedra, Papel, Tesoura!"
 
-## Getting Started
+### O app permite ao usuário escolher uma das três opções entre pedra, papel ou tesoura e sorteia a opção do computador. No final o resultado é apresentado e um placar marca o número de vitórias de cada jogador: você e o computador.
 
-This project is a starting point for a Flutter application.
+### Telas do app
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="" width="250px"/>
+<img src="" width="250px"/>
+<img src="" width="250px"/>
