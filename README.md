@@ -6,6 +6,6 @@
 
 ### Telas do app
 
-<img src="https://github.com/ClebertJR/pedra-papel-tesoura-flutter-app/assets/95129252/ddacaff5-60c7-43c4-968a-3144f27786f4" width="250px"/>
-<img src="https://github.com/ClebertJR/pedra-papel-tesoura-flutter-app/assets/95129252/7984a010-ec52-446d-80de-49bff812f723" width="250px"/>
-<img src="https://github.com/ClebertJR/pedra-papel-tesoura-flutter-app/assets/95129252/6f5946c1-cb04-4e91-895b-4eb5ec168b42" width="250px"/>
+<img src="https://github.com/ClebertJR/pedra-papel-tesoura-flutter-app/assets/95129252/636b96a5-a52c-4e8c-93f8-fd3c9b4c8d56" width="250px"/>
+<img src="https://github.com/ClebertJR/pedra-papel-tesoura-flutter-app/assets/95129252/0c78bf26-cd05-4947-ab58-47fa416be14b" width="250px"/>
+<img src="https://github.com/ClebertJR/pedra-papel-tesoura-flutter-app/assets/95129252/13306af6-2513-4c96-9476-d944c7a46ef5" width="250px"/>
